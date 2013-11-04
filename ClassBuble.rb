@@ -1,43 +1,42 @@
-class BubleSort
-  attr_accessor :mas
+class Sort
+  attr_accessor :array
   
-  def initialize(mas=[])
-    @mas=mas
+  def initialize(array=[])
+    @array=array
   end
   def bubleSort
-    masSize=@mas.length
-    for i in 0...masSize do
-      for j in 0...(masSize-i-1) do
-        if @mas[j] > @mas[j+1]
-          buf=@mas[j]
-          @mas[j]=@mas[j+1]
-          @mas[j+1]=buf
-        end
+    arraySize=@array.length
+    for i in 0...arraySize do
+      for j in 0...(arraySize-i-1) do
+        if @array[j] > @array[j+1]
+           @array[j], @array[j+1] = @array[j+1], @array[j]
+         end
       end
     end
-    @mas
+    @array
   end
  end
- def randomMas(mas)
+ def randomArray(array)
    p "Enter size: "
-   masSize2RM=gets.chomp
+   array4randomArray=gets.chomp
    p "Enter random range from:"
    leftRange=gets.chomp
    p "to:"
    rightRange=gets.chomp
    
-   masSize2RM=masSize2RM.to_i
+   array4randomArray=array4randomArray.to_i
    leftRange=leftRange.to_i
    rightRange=rightRange.to_i
    
-   masSize2RM.times do
-     mas.push rand(leftRange..rightRange)
-   end
-   mas
- end
-mas = []
-mas = randomMas(mas)
-buble=BubleSort.new(mas)
+     array4randomArray.times do
+     array.<< rand(leftRange..rightRange)
+     end
+   array
+end
+p "RandomArray"
+array = []
+array = randomArray(array)
+buble=Sort.new(array)
 buble.bubleSort
-p buble.mas
-p "Right?" 
+p buble.array
+p "Right?"
