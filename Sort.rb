@@ -19,7 +19,7 @@ class Hash_car
     end
     
     if is_a_good_key.call
-      @hash = @hash.sort_by { |hash| hash[key_string.to_s] }
+      @hash = @hash.sort_by { |hash| hash[key_string.to_sym] }
       puts @hash
     else
       puts "I'm sorry, can't fine #{method_name}"
