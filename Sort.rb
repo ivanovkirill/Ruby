@@ -42,6 +42,7 @@ end
 	break
       end
     end
+    input.to_i
   end
 
   
