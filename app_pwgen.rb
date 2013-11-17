@@ -21,7 +21,7 @@ post '/generate' do
   @password_length = params['@password']
   @how_to_gen = params['@how_to_gen']
   pwgen = 'pwgen '
-  # with if always return false :C  
+  # this if always return false :C  
   #if @password.to_i > 7 && @password.to_i < 31 
     @how_to_gen.each do |type|
       if type == "1"
