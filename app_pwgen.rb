@@ -5,9 +5,9 @@ get '/' do
     <form method="post" action="/generate">
       <p><b>What passowrd do you want</b><Br>
     
-      <input type="checkbox" name="@how_to_gen[]" value="1"> Choose with if you want to capitalize your passwrd<Br>
-      <input type="checkbox" name="@how_to_gen[]" value="2"> Choose with if you want to add some digits<Br>
-      <input type="checkbox" name="@how_to_gen[]" value="3"> Choose with if hate ambiguos characters<Br>
+      <input type="checkbox" name="@how_to_gen[]" value="1"> Choose this if you want to capitalize your passwrd<Br>
+      <input type="checkbox" name="@how_to_gen[]" value="2"> Choose this if you want to add some digits<Br>
+      <input type="checkbox" name="@how_to_gen[]" value="3"> Choose this if hate ambiguos characters<Br>
       <input type="checkbox" name="@how_to_gen[]" value="4"> and the last one to generate random password<Br>
       
       <p><b>What is the length of the password do you want?(from 8 to 30)</p></b>
@@ -19,10 +19,12 @@ end
 
 post '/generate' do
   @password_length = params['@password']
-  @how_to_gen = params['@how_to_gen']
+  @how_to_gen = params[:@how_to_gen]
   pwgen = 'pwgen '
-  # this if always return false :C  
-  #if @password.to_i > 7 && @password.to_i < 31 
+  @how_to_gen.to_s
+  #p @password_length
+  #p @how_to_gen
+  if @password_length.to_i > 7 && @password_length.to_i < 31 
     @how_to_gen.each do |type|
       if type == "1"
 	gen_type = ' -n'
@@ -40,15 +42,13 @@ post '/generate' do
     # i have no idea why i write with :
     # something wrong with gen_type
     # 
-    gen_type = gen_type.to_s
-    p gen_type
     length_type = @password_length.to_s + " 1"
     output=pwgen + gen_type
     output=output + length_type
     output = `#{output}`
-    p "Your password is "+ output
-  #else
-    #p "Incorrect input, try again"
-  #end
+    p "\nYour password is "+ output
+   else
+    p "Incorrect input, try again"
+  end
 end
       
